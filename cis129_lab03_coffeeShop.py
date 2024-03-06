@@ -38,7 +38,7 @@ print(numberOfTea)
 # Number of Boba question
 print ("Number of boba bought?")
 
-# Amount of Boba displayed
+# Amount of Tea displayed
 numberOfBoba = input('Enter amount of boba: ')
 numberOfBoba = int(numberOfBoba)
 print(numberOfBoba)
@@ -75,13 +75,14 @@ totalMuffinPrice = (numberOfMuffin * muffinPrice)
 totalTeaPrice = (numberOfTea * teaPrice)
 totalBobaPrice = (numberOfBoba * bobaPrice)
 
+
 # Sales Tax
 coffeeSalesTax = (numberOfCoffee * coffeePrice * 0.06)
 muffinSalesTax = (numberOfMuffin * muffinPrice * 0.06)
 teaSalesTax = (numberOfTea * teaPrice * 0.06)
 bobaSalesTax = (numberOfBoba * bobaPrice * 0.06)
 
-totalSalesTax = (coffeeSalesTax + muffinSalesTax)
+totalSalesTax = (coffeeSalesTax + muffinSalesTax + teaSalesTax + bobaSalesTax)
 
 # Display value and text
 print(numberOfCoffee , "Coffee at $5 each: $" , (format(totalCoffeePrice, '.2f')))
@@ -98,7 +99,7 @@ print("-"*10)
 # Total and Tax
 totalOrder = (totalCoffeePrice + totalMuffinPrice + totalTeaPrice + totalBobaPrice + totalSalesTax)
 
-# Total
+#Total
 print("Total: $" , (format(totalOrder, '.2f')))
 
 # End border containing *
