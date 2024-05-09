@@ -1,0 +1,97 @@
+import csv
+
+def main():
+    print("This program stores grades in a text file and student records in a CSV file.")
+
+    # Part 1: Store grades in a text file
+    store_grades()
+
+    # Part 2: Read grades from text file and display summary
+    display_grades_summary()
+
+    # Part 3: Enter student records and store in a CSV file
+    enter_student_records()
+
+def store_grades():
+    print("\nStoring grades in grades.txt...")
+    # Open the file in append mode
+    with open('grades.txt', 'a') as file:
+        while True:
+            # Input a grade from the user
+            grade = input("Enter a grade (or 'done' to finish): ")
+            
+            # Check if the user wants to finish
+            if grade.lower() == 'done':
+                break
+            
+            # Write the grade to the file
+            file.write(grade + "\n")
+    print("Grades have been stored in grades.txt.")
+
+def display_grades_summary():
+    print("\nReading grades from grades.txt...")
+    # Open the grades.txt file for reading
+    with open('grades.txt', 'r') as file:
+        # Read all lines from the file
+        lines = file.readlines()
+
+        # Initialize variables for total and count
+        total = 0.0
+        count = 0
+
+        # Display individual grades and calculate total and count
+        print("Individual grades:")
+        for line in lines:
+            # Convert each line to a float (grade)
+            grade = float(line.strip())
+            
+            # Print the grade
+            print(grade)
+            
+            # Update total and count
+            total += grade
+            count += 1
+
+        # Calculate the average
+        if count > 0:
+            average = total / count
+        else:
+            average = 0
+
+    # Display total, count, and average
+    print("\nTotal:", total)
+    print("Count:", count)
+    print("Average:", average)
+
+def enter_student_records():
+    print("\nEntering student records...")
+    # Open the CSV file for writing
+    with open('grades.csv', 'w', newline='') as csvfile:
+        # Create a CSV writer object
+        writer = csv.writer(csvfile)
+        
+        # Write the header row
+        writer.writerow(['First Name', 'Last Name', 'Exam 1 Grade', 'Exam 2 Grade', 'Exam 3 Grade'])
+
+        # Input student information
+        while True:
+            first_name = input("Enter student's first name (or 'done' to finish): ")
+            if first_name.lower() == 'done':
+                break
+            
+            last_name = input("Enter student's last name: ")
+            # Use try-except block to handle invalid input for grades
+            try:
+                exam1_grade = int(input("Enter student's exam 1 grade: "))
+                exam2_grade = int(input("Enter student's exam 2 grade: "))
+                exam3_grade = int(input("Enter student's exam 3 grade: "))
+
+                # Write the student record to the CSV file
+                writer.writerow([first_name, last_name, exam1_grade, exam2_grade, exam3_grade])
+            except ValueError:
+                print("Invalid input for grade. Please enter a valid integer.")
+
+    print("Student records have been written to grades.csv.")
+
+if __name__ == "__main__":
+    main()
